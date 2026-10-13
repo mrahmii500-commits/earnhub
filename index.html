@@ -3,105 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EarnHub - Task & Referral Website</title>
+<title>EarnHub Pro - Official</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f5f5f5}
-.header{background:#0a7a3a;color:white;padding:15px;text-align:center}
-.container{max-width:900px;margin:20px auto;padding:10px}
-.card{background:white;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.dashboard{background:#0e9c4c;color:white;border-radius:12px;padding:25px;margin-bottom:20px}
-.btn{background:#0e9c4c;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:bold}
-.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px}
-.plan{border:2px solid #ddd;border-radius:12px;padding:15px;text-align:center}
-.plan.pro{border-color:#0e9c4c;background:#f0fdf4}
-.price{font-size:24px;font-weight:bold;color:#0e9c4c;margin:10px 0}
-.popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999}
-.popup-box{background:white;padding:25px;border-radius:15px;max-width:380px;width:90%;text-align:center}
-.jazz{background:red;color:white;padding:10px;border-radius:8px;margin:10px 0;font-weight:bold;font-size:18px}
-input{width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+body{font-family:'Inter',sans-serif;background:#f0fdf4}
+.glass{backdrop-filter:blur(10px);background:rgba(255,255,255,0.9)}
+.pro-shadow{box-shadow:0 10px 30px rgba(16,185,129,0.2)}
+.gold-gradient{background:linear-gradient(135deg,#fbbf24,#d97706)}
 </style>
 </head>
-<body>
-<div class="header"><h2>EarnHub</h2></div>
+<body class="bg-gray-50">
 
-<div id="authSection" class="container">
-<div class="card"><h2>Login / Signup</h2>
-<input id="nameInput" placeholder="Enter Name">
-<input id="emailInput" placeholder="Enter Email">
-<button class="btn" onclick="login()">Login / Create Account</button>
-</div></div>
-
-<div id="dashboardSection" class="container" style="display:none;">
-<div class="dashboard">
-<h2>My Dashboard</h2>
-<p>Welcome, <span id="userName">User</span>!</p>
-<p>Demo Balance</p>
-<h1><span id="points">0</span> Points</h1>
-<button onclick="logout()" style="background:white;color:#333;padding:8px 18px;border-radius:8px;border:none;cursor:pointer">Logout</button>
+<!-- HEADER -->
+<header class="bg-white border-b sticky top-0 z-50">
+<div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+<div class="flex items-center gap-2"><div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black">E</div><h1 class="font-extrabold text-xl tracking-tight">EarnHub<span class="text-emerald-600">.Pro</span></h1></div>
+<div id="topBalance" class="hidden bg-emerald-50 text-emerald-700 px-4 py-1.5 rounded-full font-bold text-sm">0 Points</div>
 </div>
+</header>
 
-<div class="card">
-<h3>🎁 Invite Friends</h3>
-<p style="color:#0e9c4c;font-weight:bold;margin-top:15px;">My Referral Code</p>
-<h2 style="color:#0e9c4c;letter-spacing:2px;" id="refCode">EHTXXXX</h2>
-<button class="btn" onclick="copyCode()">Copy Referral Code</button>
-<p style="margin-top:15px;color:#0e9c4c;font-weight:bold;">My Referral Link</p>
-<input id="refLink" readonly>
-<button class="btn" onclick="copyLink()">Copy Link</button>
-</div>
-
-<div class="card" style="border:2px solid #0e9c4c;">
-<h2 style="text-align:center;">🚀 Upgrade Your Plan</h2>
-<p style="text-align:center;color:#666;">Dashboard ke andar hi plan kharido</p>
-<div class="plans">
-<div class="plan"><h3>Free Plan</h3><p>3 Tasks Daily</p><div class="price">Rs 0</div><button disabled>Active</button></div>
-<div class="plan pro"><h3>⭐ Pro Plan</h3><p>20 Tasks Daily</p><p>20% Bonus</p><div class="price">Rs 500</div><button class="btn" onclick="openPay('Pro - Rs 500')">Buy Pro</button></div>
-<div class="plan pro" style="border-color:gold;"><h3>💎 Diamond</h3><p>50 Tasks Daily</p><p>40% Bonus</p><div class="price">Rs 1000</div><button class="btn" style="background:gold;color:black;" onclick="openPay('Diamond - Rs 1000')">Buy Diamond</button></div>
+<!-- LOGIN -->
+<div id="authSection" class="max-w-md mx-auto mt-20 p-6">
+<div class="bg-white rounded-[24px] p-8 shadow-xl">
+<h2 class="text-3xl font-extrabold text-center">Welcome Back</h2>
+<p class="text-center text-gray-500 mt-2 mb-6">Login to continue earning</p>
+<input id="nameInput" placeholder="Your Name" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-emerald-500 mb-3">
+<input id="emailInput" placeholder="Email Address" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-emerald-500 mb-4">
+<button onclick="login()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-xl font-bold text-lg transition">Continue to Dashboard →</button>
 </div>
 </div>
 
-<div class="card"><h3>📋 Daily Tasks</h3><button class="btn" onclick="earnPoints()">Complete Task +10 Points</button></div>
+<!-- DASHBOARD -->
+<div id="dashboardSection" class="hidden max-w-6xl mx-auto px-4 py-6">
+
+<!-- STATS -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-[20px] p-6 text-white pro-shadow">
+<p class="text-emerald-100 text-sm">Total Balance</p><h1 class="text-4xl font-black mt-1"><span id="points">0</span> <span class="text-xl font-semibold">PTS</span></h1>
+<p class="text-emerald-200 text-xs mt-3">↑ +12% from yesterday</p>
+</div>
+<div class="bg-white rounded-[20px] p-6 border"><p class="text-gray-400 text-sm">Total Referrals</p><h2 class="text-3xl font-black mt-1">12</h2><p class="text-xs text-gray-500 mt-2">Active friends</p></div>
+<div class="bg-white rounded-[20px] p-6 border"><p class="text-gray-400 text-sm">Tasks Done</p><h2 class="text-3xl font-black mt-1">48</h2><p class="text-xs text-gray-500 mt-2">Today: 3</p></div>
 </div>
 
-<div id="payPopup" class="popup">
-<div class="popup-box">
-<h2>Payment Method</h2>
-<p>You selected: <b id="selectedPlan"></b></p>
-<p style="margin-top:10px;">Send payment to:</p>
-<div class="jazz">JazzCash: 03289332912</div>
-<p style="font-size:13px;color:#666;">Account Title: EarnHub Official</p>
-<input placeholder="Enter Your JazzCash Number">
-<input placeholder="Enter Transaction ID">
-<button class="btn" style="width:100%;margin-top:10px;" onclick="submitPay()">Submit Proof</button>
-<button style="margin-top:10px;width:100%;padding:10px;border-radius:8px;" onclick="closePay()">Close</button>
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="md:col-span-1 space-y-6">
+<!-- INVITE -->
+<div class="bg-white rounded-[20px] p-6 border">
+<h3 class="font-bold text-lg">🎁 Invite & Earn</h3>
+<p class="text-sm text-gray-500 mt-1">Get 20% bonus on every referral</p>
+<div class="mt-5 p-4 bg-gray-50 rounded-xl border-dashed border-2 border-gray-200 text-center">
+<p class="text-xs text-gray-400">REFERRAL CODE</p><h2 id="refCode" class="font-black text-2xl tracking-widest text-emerald-600 mt-1">EHTXXXX</h2>
+</div>
+<input id="refLink" readonly class="w-full mt-3 p-3 bg-gray-900 text-emerald-400 rounded-xl text-xs">
+<div class="grid grid-cols-2 gap-2 mt-3">
+<button onclick="copyCode()" class="bg-emerald-600 text-white py-2.5 rounded-xl font-bold text-sm">Copy Code</button>
+<button onclick="copyLink()" class="bg-gray-900 text-white py-2.5 rounded-xl font-bold text-sm">Copy Link</button>
+</div>
+</div>
+
+<!-- TASK -->
+<div class="bg-white rounded-[20px] p-6 border">
+<h3 class="font-bold">Daily Tasks</h3>
+<button onclick="earnPoints()" class="w-full mt-4 bg-gray-900 text-white py-3 rounded-xl font-bold">▶ Watch Ad & Earn +10</button>
+</div>
+</div>
+
+<!-- PLANS - PROFESSIONAL -->
+<div class="md:col-span-2 bg-white rounded-[24px] p-6 md:p-8 border shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-2xl font-black">Choose Your Plan</h2><span class="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold">BEST VALUE</span>
+</div>
+
+<div class="grid md:grid-cols-3 gap-4">
+
+<!-- FREE -->
+<div class="border rounded-[18px] p-5 hover:shadow-lg transition">
+<h3 class="font-bold">Free</h3><p class="text-xs text-gray-500 mt-1">Starter Pack</p>
+<div class="text-3xl font-black mt-4">Rs 0</div>
+<ul class="text-sm text-gray-600 mt-4 space-y-2"><li>✓ 3 Tasks / Day</li><li>✓ Basic Support</li><li class="opacity-40">✗ Fast Withdraw</li></ul>
+<button disabled class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-bold text-gray-400">Current</button>
+</div>
+
+<!-- PRO - POPULAR -->
+<div class="border-2 border-emerald-500 rounded-[18px] p-5 bg-emerald-50/50 relative pro-shadow scale-[1.02]">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] px-3 py-1 rounded-full font-black tracking-widest">MOST POPULAR</div>
+<h3 class="font-black">⭐ Pro Plan</h3><p class="text-xs text-emerald-700 mt-1">For Earners</p>
+<div class="text-3xl font-black mt-4 text-emerald-600">Rs 500</div>
+<ul class="text-sm mt-4 space-y-2"><li>✓ 20 Tasks / Day</li><li>✓ 20% Referral Bonus</li><li>✓ Fast Withdraw</li><li>✓ Priority Support</li></ul>
+<button onclick="openPay('Pro - Rs 500')" class="w-full mt-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold shadow">Upgrade to Pro</button>
+</div>
+
+<!-- DIAMOND -->
+<div class="border rounded-[18px] p-5 bg-gradient-to-b from-amber-50 to-white hover:shadow-lg transition">
+<h3 class="font-black">💎 Diamond</h3><p class="text-xs text-amber-700 mt-1">VIP Club</p>
+<div class="text-3xl font-black mt-4">Rs 1000</div>
+<ul class="text-sm text-gray-700 mt-4 space-y-2"><li>✓ 50 Tasks / Day</li><li>✓ 40% Referral Bonus</li><li>✓ Instant Withdraw</li><li>✓ 24/7 VIP Support</li></ul>
+<button onclick="openPay('Diamond - Rs 1000')" class="w-full mt-6 py-3 gold-gradient text-black rounded-xl font-black">Get Diamond</button>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- PAYMENT POPUP - PRO -->
+<div id="payPopup" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[999] p-4">
+<div class="bg-white rounded-[24px] max-w-sm w-full p-7 text-center">
+<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">💳</div>
+<h2 class="font-black text-xl">Complete Payment</h2>
+<p class="text-sm text-gray-500 mt-1">You selected <b id="selectedPlan" class="text-black"></b></p>
+<div class="mt-5 p-4 bg-red-600 text-white rounded-xl"><p class="text-xs opacity-80">Send via JazzCash</p><h2 class="text-2xl font-black tracking-wider">03289332912</h2><p class="text-xs mt-1">Title: EarnHub Official</p></div>
+<input placeholder="Your JazzCash Number" class="w-full mt-4 p-3 bg-gray-50 rounded-xl border text-sm">
+<input placeholder="Transaction ID (TID)" class="w-full mt-2 p-3 bg-gray-50 rounded-xl border text-sm">
+<button onclick="submitPay()" class="w-full mt-4 bg-gray-900 text-white py-3 rounded-xl font-bold">I Have Paid →</button>
+<button onclick="closePay()" class="w-full mt-2 text-sm text-gray-500 py-2">Cancel</button>
 </div>
 </div>
 
 <script>
 let user=JSON.parse(localStorage.getItem('eh_user')||'null');
 function login(){
- let name=document.getElementById('nameInput').value||'Amh';
- if(!user){user={name:name,code:'EHT'+Math.random().toString(36).substr(2,6).toUpperCase(),points:0};}
- else user.name=name;
- localStorage.setItem('eh_user',JSON.stringify(user));showDashboard();
+ let n=document.getElementById('nameInput').value||'Amh';
+ if(!user){user={name:n,code:'EHT'+Math.random().toString(36).substr(2,6).toUpperCase(),points:0};}
+ localStorage.setItem('eh_user',JSON.stringify(user));show();
 }
-function showDashboard(){
+function show(){
+ if(!user)return;
  document.getElementById('authSection').style.display='none';
  document.getElementById('dashboardSection').style.display='block';
- document.getElementById('userName').innerText=user.name;
+ document.getElementById('topBalance').classList.remove('hidden');
  document.getElementById('points').innerText=user.points;
+ document.getElementById('topBalance').innerText=user.points+' PTS';
  document.getElementById('refCode').innerText=user.code;
  document.getElementById('refLink').value='https://mrahmii500-commits.github.io/earnhub/?ref='+user.code;
 }
-function logout(){localStorage.removeItem('eh_user');location.reload();}
-function copyCode(){navigator.clipboard.writeText(document.getElementById('refCode').innerText);alert('Copied!');}
+function copyCode(){navigator.clipboard.writeText(document.getElementById('refCode').innerText);alert('Code Copied!');}
 function copyLink(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Link Copied!');}
-function earnPoints(){user.points+=10;localStorage.setItem('eh_user',JSON.stringify(user));document.getElementById('points').innerText=user.points;alert('+10 Points!');}
-function openPay(p){document.getElementById('selectedPlan').innerText=p;document.getElementById('payPopup').style.display='flex';}
+function earnPoints(){user.points+=10;localStorage.setItem('eh_user',JSON.stringify(user));document.getElementById('points').innerText=user.points;alert('+10 Added!');}
+function openPay(p){document.getElementById('selectedPlan').innerText=p;document.getElementById('payPopup').style.display='flex';document.getElementById('payPopup').classList.add('flex');}
 function closePay(){document.getElementById('payPopup').style.display='none';}
-function submitPay(){alert('Payment Submitted! Admin will verify. JazzCash: 03289332912');closePay();}
-if(user)showDashboard();
+function submitPay(){alert('Proof Submitted! Verified in 2 hours. JazzCash: 03289332912');closePay();}
+if(user)show();
 </script>
 </body>
 </html>
