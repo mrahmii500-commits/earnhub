@@ -4,475 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EarnHub - Task & Referral Website</title>
-
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f1f5f9;
-  color: #1e293b;
-}
-
-header {
-  background: #087f5b;
-  color: white;
-  text-align: center;
-  padding: 22px 15px;
-}
-
-header h1 { margin: 0 0 8px; }
-header p { margin: 0; }
-
-.container {
-  max-width: 850px;
-  margin: 25px auto;
-  padding: 0 15px;
-}
-
-.auth-card, .card, .referral-box {
-  background: white;
-  padding: 24px;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px #00000010;
-  margin-bottom: 20px;
-}
-
-.auth-card {
-  max-width: 440px;
-  margin: 25px auto;
-}
-
-input {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0 16px;
-  border: 1px solid #cbd5e1;
-  border-radius: 7px;
-  font-size: 15px;
-}
-
-button {
-  padding: 12px 16px;
-  background: #087f5b;
-  color: white;
-  border: 0;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-button:hover { background: #066747; }
-button:disabled { background: #64748b; cursor: default; }
-.auth-card button { width: 100%; }
-
-.switch {
-  text-align: center;
-  margin-top: 18px;
-}
-
-.switch button {
-  background: transparent;
-  color: #087f5b;
-  font-weight: bold;
-}
-
-.message {
-  font-size: 14px;
-  overflow-wrap: anywhere;
-}
-
-.hidden { display: none !important; }
-
-.balance {
-  background: linear-gradient(135deg, #087f5b, #20a779);
-  color: white;
-  padding: 25px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-}
-
-.referral-box h3 { color: #087f5b; }
-
-.referral-code {
-  font-size: 23px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #087f5b;
-  overflow-wrap: anywhere;
-}
-
-.link-row {
-  display: flex;
-  gap: 8px;
-  align-items: stretch;
-}
-
-.link-row input {
-  min-width: 0;
-  margin: 0;
-  flex: 1;
-}
-
-.link-row button { flex-shrink: 0; }
-
-.stat {
-  background: #ecfdf5;
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 18px;
-}
-
-.stat strong {
-  font-size: 25px;
-  color: #087f5b;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
-
-.card h3 { color: #087f5b; }
-
-footer {
-  text-align: center;
-  padding: 25px;
-  color: #64748b;
-}
-
-@media (max-width: 420px) {
-  .link-row { flex-direction: column; }
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f5f5f5}
+.header{background:#0a7a3a;color:white;padding:15px;text-align:center}
+.container{max-width:900px;margin:20px auto;padding:10px}
+.card{background:white;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.dashboard{background:#0e9c4c;color:white;border-radius:12px;padding:25px;margin-bottom:20px}
+.btn{background:#0e9c4c;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:bold}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px}
+.plan{border:2px solid #ddd;border-radius:12px;padding:15px;text-align:center}
+.plan.pro{border-color:#0e9c4c;background:#f0fdf4}
+.price{font-size:24px;font-weight:bold;color:#0e9c4c;margin:10px 0}
+.popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999}
+.popup-box{background:white;padding:25px;border-radius:15px;max-width:380px;width:90%;text-align:center}
+.jazz{background:red;color:white;padding:10px;border-radius:8px;margin:10px 0;font-weight:bold;font-size:18px}
+input{width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
 </style>
 </head>
-
 <body>
+<div class="header"><h2>EarnHub</h2></div>
 
-<header>
-  <h1>EarnHub</h1>
-  <p>Complete Tasks • Collect Points • Invite Friends</p>
-</header>
+<div id="authSection" class="container">
+<div class="card"><h2>Login / Signup</h2>
+<input id="nameInput" placeholder="Enter Name">
+<input id="emailInput" placeholder="Enter Email">
+<button class="btn" onclick="login()">Login / Create Account</button>
+</div></div>
 
-<main class="container">
+<div id="dashboardSection" class="container" style="display:none;">
+<div class="dashboard">
+<h2>My Dashboard</h2>
+<p>Welcome, <span id="userName">User</span>!</p>
+<p>Demo Balance</p>
+<h1><span id="points">0</span> Points</h1>
+<button onclick="logout()" style="background:white;color:#333;padding:8px 18px;border-radius:8px;border:none;cursor:pointer">Logout</button>
+</div>
 
-  <!-- Signup -->
-  <section id="signupBox" class="auth-card">
-    <h2>Create Account</h2>
-    <p>Create your demo account.</p>
+<div class="card">
+<h3>🎁 Invite Friends</h3>
+<p style="color:#0e9c4c;font-weight:bold;margin-top:15px;">My Referral Code</p>
+<h2 style="color:#0e9c4c;letter-spacing:2px;" id="refCode">EHTXXXX</h2>
+<button class="btn" onclick="copyCode()">Copy Referral Code</button>
+<p style="margin-top:15px;color:#0e9c4c;font-weight:bold;">My Referral Link</p>
+<input id="refLink" readonly>
+<button class="btn" onclick="copyLink()">Copy Link</button>
+</div>
 
-    <form id="signupForm">
-      <label for="signupName">Full Name</label>
-      <input id="signupName" required maxlength="60"
-        placeholder="Enter your name">
+<div class="card" style="border:2px solid #0e9c4c;">
+<h2 style="text-align:center;">🚀 Upgrade Your Plan</h2>
+<p style="text-align:center;color:#666;">Dashboard ke andar hi plan kharido</p>
+<div class="plans">
+<div class="plan"><h3>Free Plan</h3><p>3 Tasks Daily</p><div class="price">Rs 0</div><button disabled>Active</button></div>
+<div class="plan pro"><h3>⭐ Pro Plan</h3><p>20 Tasks Daily</p><p>20% Bonus</p><div class="price">Rs 500</div><button class="btn" onclick="openPay('Pro - Rs 500')">Buy Pro</button></div>
+<div class="plan pro" style="border-color:gold;"><h3>💎 Diamond</h3><p>50 Tasks Daily</p><p>40% Bonus</p><div class="price">Rs 1000</div><button class="btn" style="background:gold;color:black;" onclick="openPay('Diamond - Rs 1000')">Buy Diamond</button></div>
+</div>
+</div>
 
-      <label for="signupEmail">Email</label>
-      <input id="signupEmail" type="email" required maxlength="120"
-        placeholder="Enter your email">
+<div class="card"><h3>📋 Daily Tasks</h3><button class="btn" onclick="earnPoints()">Complete Task +10 Points</button></div>
+</div>
 
-      <label for="signupPassword">Password</label>
-      <input id="signupPassword" type="password" required minlength="8"
-        placeholder="At least 8 characters">
-
-      <button type="submit">Sign Up</button>
-      <p id="signupMessage" class="message" role="status"></p>
-    </form>
-
-    <div class="switch">
-      Already registered?
-      <button type="button" id="showLogin">Login</button>
-    </div>
-  </section>
-
-  <!-- Login -->
-  <section id="loginBox" class="auth-card hidden">
-    <h2>Welcome Back</h2>
-
-    <form id="loginForm">
-      <label for="loginEmail">Email</label>
-      <input id="loginEmail" type="email" required
-        placeholder="Enter your email">
-
-      <label for="loginPassword">Password</label>
-      <input id="loginPassword" type="password" required
-        placeholder="Enter your password">
-
-      <button type="submit">Login</button>
-      <p id="loginMessage" class="message" role="status"></p>
-    </form>
-
-    <div class="switch">
-      New user?
-      <button type="button" id="showSignup">Sign Up</button>
-    </div>
-  </section>
-
-  <!-- Dashboard -->
-  <section id="dashboard" class="hidden">
-
-    <div class="balance">
-      <h2>My Dashboard</h2>
-      <p>Welcome, <strong id="userName"></strong>!</p>
-      <p>Demo Balance</p>
-      <h1><span id="points">0</span> Points</h1>
-      <button type="button" id="logoutButton"
-        style="background:white;color:#087f5b">
-        Logout
-      </button>
-    </div>
-
-    <!-- Referral system -->
-    <section class="referral-box">
-      <h2>🎁 Invite Friends</h2>
-      <p>Share your referral link with friends.</p>
-
-      <h3>My Referral Code</h3>
-      <div class="referral-code" id="referralCode">EH-DEMO</div>
-      <p>
-        <button type="button" id="copyCodeButton">
-          Copy Referral Code
-        </button>
-      </p>
-
-      <h3>My Referral Link</h3>
-      <div class="link-row">
-        <input id="referralLink" readonly aria-label="Referral link">
-        <button type="button" id="copyLinkButton">Copy Link</button>
-      </div>
-      <p id="copyMessage" class="message" role="status"></p>
-
-      <div class="stat">
-        <p>Total Registered Referrals (Demo)</p>
-        <strong id="referralCount">0</strong>
-        <p>Accounts registered with your code in this browser demo.</p>
-      </div>
-    </section>
-
-    <!-- Tasks -->
-    <div class="cards">
-      <div class="card">
-        <h3>Daily Task</h3>
-        <p>Practice task reward: 10 points</p>
-        <button type="button" data-reward="10">
-          Complete Task (+10)
-        </button>
-      </div>
-
-      <div class="card">
-        <h3>Easy Task</h3>
-        <p>Practice task reward: 20 points</p>
-        <button type="button" data-reward="20">
-          Complete Task (+20)
-        </button>
-      </div>
-    </div>
-
-  </section>
-</main>
-
-<footer>EarnHub • Learning Project</footer>
+<div id="payPopup" class="popup">
+<div class="popup-box">
+<h2>Payment Method</h2>
+<p>You selected: <b id="selectedPlan"></b></p>
+<p style="margin-top:10px;">Send payment to:</p>
+<div class="jazz">JazzCash: 03289332912</div>
+<p style="font-size:13px;color:#666;">Account Title: EarnHub Official</p>
+<input placeholder="Enter Your JazzCash Number">
+<input placeholder="Enter Transaction ID">
+<button class="btn" style="width:100%;margin-top:10px;" onclick="submitPay()">Submit Proof</button>
+<button style="margin-top:10px;width:100%;padding:10px;border-radius:8px;" onclick="closePay()">Close</button>
+</div>
+</div>
 
 <script>
-const $ = id => document.getElementById(id);
-
-function getUsers() {
-  try {
-    const users = JSON.parse(
-      localStorage.getItem("earnhub_demo_users") || "[]"
-    );
-    return Array.isArray(users) ? users : [];
-  } catch {
-    return [];
-  }
+let user=JSON.parse(localStorage.getItem('eh_user')||'null');
+function login(){
+ let name=document.getElementById('nameInput').value||'Amh';
+ if(!user){user={name:name,code:'EHT'+Math.random().toString(36).substr(2,6).toUpperCase(),points:0};}
+ else user.name=name;
+ localStorage.setItem('eh_user',JSON.stringify(user));showDashboard();
 }
-
-function saveUsers(users) {
-  localStorage.setItem("earnhub_demo_users", JSON.stringify(users));
+function showDashboard(){
+ document.getElementById('authSection').style.display='none';
+ document.getElementById('dashboardSection').style.display='block';
+ document.getElementById('userName').innerText=user.name;
+ document.getElementById('points').innerText=user.points;
+ document.getElementById('refCode').innerText=user.code;
+ document.getElementById('refLink').value='https://mrahmii500-commits.github.io/earnhub/?ref='+user.code;
 }
-
-function makeReferralCode() {
-  return "EH" + Math.random().toString(36).slice(2, 9).toUpperCase();
-}
-
-function showPage(page) {
-  $("signupBox").classList.toggle("hidden", page !== "signup");
-  $("loginBox").classList.toggle("hidden", page !== "login");
-  $("dashboard").classList.toggle("hidden", page !== "dashboard");
-}
-
-function currentReferralCode() {
-  return new URLSearchParams(location.search).get("ref") || "";
-}
-
-$("showLogin").addEventListener("click", () => {
-  $("loginMessage").textContent = "";
-  showPage("login");
-});
-
-$("showSignup").addEventListener("click", () => {
-  $("signupMessage").textContent = "";
-  showPage("signup");
-});
-
-$("signupForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const name = $("signupName").value.trim();
-  const email = $("signupEmail").value.trim().toLowerCase();
-  const password = $("signupPassword").value;
-  const users = getUsers();
-
-  if (password.length < 8) {
-    $("signupMessage").textContent =
-      "Password must contain at least 8 characters.";
-    return;
-  }
-
-  if (users.some(user => user.email === email)) {
-    $("signupMessage").textContent =
-      "This email is already registered in the demo.";
-    return;
-  }
-
-  const enteredCode = currentReferralCode().trim().toUpperCase();
-  const referrer = users.find(user => user.referralCode === enteredCode);
-
-  const user = {
-    name,
-    email,
-    password,
-    referralCode: makeReferralCode(),
-    referredBy: referrer ? referrer.referralCode : null
-  };
-
-  // Demo only: not secure for real accounts.
-  users.push(user);
-  saveUsers(users);
-
-  $("signupForm").reset();
-  $("loginEmail").value = email;
-  $("loginMessage").textContent =
-    "Demo account created. Please login.";
-  showPage("login");
-});
-
-$("loginForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const email = $("loginEmail").value.trim().toLowerCase();
-  const password = $("loginPassword").value;
-
-  const user = getUsers().find(
-    item => item.email === email && item.password === password
-  );
-
-  if (!user) {
-    $("loginMessage").textContent =
-      "Incorrect details. Please check or sign up first.";
-    return;
-  }
-
-  sessionStorage.setItem("earnhub_demo_session", user.email);
-  openDashboard(user);
-});
-
-function openDashboard(user) {
-  $("userName").textContent = user.name;
-  $("referralCode").textContent = user.referralCode;
-
-  // Works as a shareable URL only after website hosting.
-  const url = new URL(location.href);
-  url.search = "";
-  url.hash = "";
-  url.searchParams.set("ref", user.referralCode);
-  $("referralLink").value = url.href;
-
-  const users = getUsers();
-  const count = users.filter(
-    item => item.referredBy === user.referralCode
-  ).length;
-  $("referralCount").textContent = count;
-
-  $("points").textContent = "0";
-  document.querySelectorAll("[data-reward]").forEach(button => {
-    button.disabled = false;
-    button.textContent =
-      "Complete Task (+" + button.dataset.reward + ")";
-  });
-
-  $("copyMessage").textContent = "";
-  showPage("dashboard");
-}
-
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch {
-    const field = document.createElement("textarea");
-    field.value = text;
-    field.style.position = "fixed";
-    field.style.left = "-9999px";
-    document.body.appendChild(field);
-    field.select();
-
-    let copied = false;
-    try {
-      copied = document.execCommand("copy");
-    } catch {}
-
-    field.remove();
-    return copied;
-  }
-}
-
-$("copyCodeButton").addEventListener("click", async () => {
-  const copied = await copyText($("referralCode").textContent);
-  $("copyMessage").textContent = copied
-    ? "Referral code copied!"
-    : "Copy failed. Please select and copy the code manually.";
-});
-
-$("copyLinkButton").addEventListener("click", async () => {
-  const copied = await copyText($("referralLink").value);
-  $("copyMessage").textContent = copied
-    ? "Referral link copied!"
-    : "Copy failed. Please copy the link manually.";
-});
-
-document.querySelectorAll("[data-reward]").forEach(button => {
-  button.addEventListener("click", () => {
-    if (button.disabled) return;
-
-    const amount = Number(button.dataset.reward);
-    $("points").textContent =
-      Number($("points").textContent) + amount;
-
-    button.textContent = "Completed!";
-    button.disabled = true;
-  });
-});
-
-$("logoutButton").addEventListener("click", () => {
-  sessionStorage.removeItem("earnhub_demo_session");
-  $("loginForm").reset();
-  $("loginMessage").textContent = "";
-  showPage("login");
-});
-
-// Restore a demo login when the page is refreshed.
-const savedEmail = sessionStorage.getItem("earnhub_demo_session");
-const savedUser = getUsers().find(user => user.email === savedEmail);
-
-if (savedUser) {
-  openDashboard(savedUser);
-} else {
-  showPage("signup");
-}
+function logout(){localStorage.removeItem('eh_user');location.reload();}
+function copyCode(){navigator.clipboard.writeText(document.getElementById('refCode').innerText);alert('Copied!');}
+function copyLink(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Link Copied!');}
+function earnPoints(){user.points+=10;localStorage.setItem('eh_user',JSON.stringify(user));document.getElementById('points').innerText=user.points;alert('+10 Points!');}
+function openPay(p){document.getElementById('selectedPlan').innerText=p;document.getElementById('payPopup').style.display='flex';}
+function closePay(){document.getElementById('payPopup').style.display='none';}
+function submitPay(){alert('Payment Submitted! Admin will verify. JazzCash: 03289332912');closePay();}
+if(user)showDashboard();
 </script>
-
 </body>
 </html>
