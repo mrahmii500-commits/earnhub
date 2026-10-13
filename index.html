@@ -5,148 +5,111 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EarnHub Pro - Official</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-body{font-family:'Inter',sans-serif;background:#f0fdf4}
-.glass{backdrop-filter:blur(10px);background:rgba(255,255,255,0.9)}
-.pro-shadow{box-shadow:0 10px 30px rgba(16,185,129,0.2)}
-.gold-gradient{background:linear-gradient(135deg,#fbbf24,#d97706)}
+body{font-family:'Outfit',sans-serif;background:#0a0a0a;color:white}
+.neon{box-shadow:0 0 20px rgba(0,255,136,0.3)}
+.neon-border{border:1px solid rgba(0,255,136,0.3)}
+.gold-neon{box-shadow:0 0 25px rgba(255,215,0,0.3)}
 </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-[#0a0a0a]">
 
-<!-- HEADER -->
-<header class="bg-white border-b sticky top-0 z-50">
+<header class="bg-[#111111] border-b border-[#222] sticky top-0 z-50">
 <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-<div class="flex items-center gap-2"><div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-black">E</div><h1 class="font-extrabold text-xl tracking-tight">EarnHub<span class="text-emerald-600">.Pro</span></h1></div>
-<div id="topBalance" class="hidden bg-emerald-50 text-emerald-700 px-4 py-1.5 rounded-full font-bold text-sm">0 Points</div>
+<div class="flex items-center gap-3"><div class="w-10 h-10 bg-[#00FF88] rounded-xl flex items-center justify-center text-black font-black text-xl neon">E</div><h1 class="font-extrabold text-xl">EarnHub<span class="text-[#00FF88]">.PRO</span></h1></div>
+<div id="topBalance" class="hidden bg-[#00FF88]/10 text-[#00FF88] border border-[#00FF88]/20 px-4 py-1.5 rounded-full font-bold text-sm">0 PTS</div>
 </div>
 </header>
 
-<!-- LOGIN -->
 <div id="authSection" class="max-w-md mx-auto mt-20 p-6">
-<div class="bg-white rounded-[24px] p-8 shadow-xl">
+<div class="bg-[#151515] rounded-[24px] p-8 border border-[#222]">
 <h2 class="text-3xl font-extrabold text-center">Welcome Back</h2>
-<p class="text-center text-gray-500 mt-2 mb-6">Login to continue earning</p>
-<input id="nameInput" placeholder="Your Name" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-emerald-500 mb-3">
-<input id="emailInput" placeholder="Email Address" class="w-full p-4 bg-gray-50 rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-emerald-500 mb-4">
-<button onclick="login()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-xl font-bold text-lg transition">Continue to Dashboard →</button>
+<p class="text-center text-zinc-500 mt-2 mb-6">Login to continue earning</p>
+<input id="nameInput" placeholder="Your Name" class="w-full p-4 bg-[#0a0a0a] rounded-xl border border-[#222] text-white outline-none focus:border-[#00FF88] mb-3">
+<input id="emailInput" placeholder="Email Address" class="w-full p-4 bg-[#0a0a0a] rounded-xl border border-[#222] text-white outline-none focus:border-[#00FF88] mb-4">
+<button onclick="login()" class="w-full bg-[#00FF88] hover:bg-[#00ff88d0] text-black p-4 rounded-xl font-black text-lg transition neon">Continue →</button>
 </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboardSection" class="hidden max-w-6xl mx-auto px-4 py-6">
-
-<!-- STATS -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-<div class="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-[20px] p-6 text-white pro-shadow">
-<p class="text-emerald-100 text-sm">Total Balance</p><h1 class="text-4xl font-black mt-1"><span id="points">0</span> <span class="text-xl font-semibold">PTS</span></h1>
-<p class="text-emerald-200 text-xs mt-3">↑ +12% from yesterday</p>
+<div class="bg-gradient-to-br from-[#00FF88] to-[#00cc6a] rounded-[20px] p-6 text-black neon">
+<p class="text-black/60 text-sm font-bold">TOTAL BALANCE</p><h1 class="text-4xl font-black mt-1"><span id="points">0</span> PTS</h1>
 </div>
-<div class="bg-white rounded-[20px] p-6 border"><p class="text-gray-400 text-sm">Total Referrals</p><h2 class="text-3xl font-black mt-1">12</h2><p class="text-xs text-gray-500 mt-2">Active friends</p></div>
-<div class="bg-white rounded-[20px] p-6 border"><p class="text-gray-400 text-sm">Tasks Done</p><h2 class="text-3xl font-black mt-1">48</h2><p class="text-xs text-gray-500 mt-2">Today: 3</p></div>
+<div class="bg-[#151515] rounded-[20px] p-6 border border-[#222]"><p class="text-zinc-500 text-sm">Total Referrals</p><h2 class="text-3xl font-black mt-1">12</h2></div>
+<div class="bg-[#151515] rounded-[20px] p-6 border border-[#222]"><p class="text-zinc-500 text-sm">Tasks Done</p><h2 class="text-3xl font-black mt-1">48</h2></div>
 </div>
 
 <div class="grid md:grid-cols-3 gap-6">
-
 <div class="md:col-span-1 space-y-6">
-<!-- INVITE -->
-<div class="bg-white rounded-[20px] p-6 border">
+<div class="bg-[#151515] rounded-[20px] p-6 border border-[#222]">
 <h3 class="font-bold text-lg">🎁 Invite & Earn</h3>
-<p class="text-sm text-gray-500 mt-1">Get 20% bonus on every referral</p>
-<div class="mt-5 p-4 bg-gray-50 rounded-xl border-dashed border-2 border-gray-200 text-center">
-<p class="text-xs text-gray-400">REFERRAL CODE</p><h2 id="refCode" class="font-black text-2xl tracking-widest text-emerald-600 mt-1">EHTXXXX</h2>
+<div class="mt-5 p-4 bg-[#0a0a0a] rounded-xl border border-dashed border-[#333] text-center">
+<p class="text-xs text-zinc-500">REFERRAL CODE</p><h2 id="refCode" class="font-black text-2xl tracking-widest text-[#00FF88] mt-1">EHTXXXX</h2>
 </div>
-<input id="refLink" readonly class="w-full mt-3 p-3 bg-gray-900 text-emerald-400 rounded-xl text-xs">
+<input id="refLink" readonly class="w-full mt-3 p-3 bg-black text-[#00FF88] rounded-xl text-xs border border-[#222]">
 <div class="grid grid-cols-2 gap-2 mt-3">
-<button onclick="copyCode()" class="bg-emerald-600 text-white py-2.5 rounded-xl font-bold text-sm">Copy Code</button>
-<button onclick="copyLink()" class="bg-gray-900 text-white py-2.5 rounded-xl font-bold text-sm">Copy Link</button>
+<button onclick="copyCode()" class="bg-[#00FF88] text-black py-2.5 rounded-xl font-black text-sm">Copy Code</button>
+<button onclick="copyLink()" class="bg-[#222] text-white py-2.5 rounded-xl font-bold text-sm">Copy Link</button>
 </div>
 </div>
-
-<!-- TASK -->
-<div class="bg-white rounded-[20px] p-6 border">
+<div class="bg-[#151515] rounded-[20px] p-6 border border-[#222]">
 <h3 class="font-bold">Daily Tasks</h3>
-<button onclick="earnPoints()" class="w-full mt-4 bg-gray-900 text-white py-3 rounded-xl font-bold">▶ Watch Ad & Earn +10</button>
+<button onclick="earnPoints()" class="w-full mt-4 bg-white text-black py-3 rounded-xl font-black">▶ Watch Ad & Earn +10</button>
 </div>
 </div>
 
-<!-- PLANS - PROFESSIONAL -->
-<div class="md:col-span-2 bg-white rounded-[24px] p-6 md:p-8 border shadow-sm">
-<div class="flex justify-between items-center mb-6">
-<h2 class="text-2xl font-black">Choose Your Plan</h2><span class="text-xs bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold">BEST VALUE</span>
-</div>
-
+<div class="md:col-span-2 bg-[#151515] rounded-[24px] p-6 md:p-8 border border-[#222]">
+<h2 class="text-2xl font-black mb-6">Choose Your Plan <span class="text-xs bg-[#00FF88]/10 text-[#00FF88] px-3 py-1 rounded-full ml-2">BEST VALUE</span></h2>
 <div class="grid md:grid-cols-3 gap-4">
 
-<!-- FREE -->
-<div class="border rounded-[18px] p-5 hover:shadow-lg transition">
-<h3 class="font-bold">Free</h3><p class="text-xs text-gray-500 mt-1">Starter Pack</p>
-<div class="text-3xl font-black mt-4">Rs 0</div>
-<ul class="text-sm text-gray-600 mt-4 space-y-2"><li>✓ 3 Tasks / Day</li><li>✓ Basic Support</li><li class="opacity-40">✗ Fast Withdraw</li></ul>
-<button disabled class="w-full mt-6 py-3 bg-gray-100 rounded-xl font-bold text-gray-400">Current</button>
+<div class="bg-[#0a0a0a] border border-[#222] rounded-[18px] p-5">
+<h3 class="font-bold">Free</h3><div class="text-3xl font-black mt-4">Rs 0</div>
+<ul class="text-sm text-zinc-400 mt-4 space-y-2"><li>✓ 3 Tasks / Day</li><li>✓ Basic Support</li></ul>
+<button disabled class="w-full mt-6 py-3 bg-[#222] rounded-xl font-bold text-zinc-500">Current</button>
 </div>
 
-<!-- PRO - POPULAR -->
-<div class="border-2 border-emerald-500 rounded-[18px] p-5 bg-emerald-50/50 relative pro-shadow scale-[1.02]">
-<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] px-3 py-1 rounded-full font-black tracking-widest">MOST POPULAR</div>
-<h3 class="font-black">⭐ Pro Plan</h3><p class="text-xs text-emerald-700 mt-1">For Earners</p>
-<div class="text-3xl font-black mt-4 text-emerald-600">Rs 500</div>
-<ul class="text-sm mt-4 space-y-2"><li>✓ 20 Tasks / Day</li><li>✓ 20% Referral Bonus</li><li>✓ Fast Withdraw</li><li>✓ Priority Support</li></ul>
-<button onclick="openPay('Pro - Rs 500')" class="w-full mt-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold shadow">Upgrade to Pro</button>
+<div class="bg-[#0a0a0a] border-2 border-[#00FF88] rounded-[18px] p-5 relative neon">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00FF88] text-black text-[10px] px-3 py-1 rounded-full font-black">MOST POPULAR</div>
+<h3 class="font-black text-[#00FF88]">⭐ Pro Plan</h3><div class="text-3xl font-black mt-4 text-[#00FF88]">Rs 500</div>
+<ul class="text-sm mt-4 space-y-2 text-zinc-300"><li>✓ 20 Tasks / Day</li><li>✓ 20% Bonus</li><li>✓ Fast Withdraw</li><li>✓ Priority Support</li></ul>
+<button onclick="openPay('Pro - Rs 500')" class="w-full mt-6 py-3 bg-[#00FF88] text-black rounded-xl font-black neon">Upgrade to Pro</button>
 </div>
 
-<!-- DIAMOND -->
-<div class="border rounded-[18px] p-5 bg-gradient-to-b from-amber-50 to-white hover:shadow-lg transition">
-<h3 class="font-black">💎 Diamond</h3><p class="text-xs text-amber-700 mt-1">VIP Club</p>
-<div class="text-3xl font-black mt-4">Rs 1000</div>
-<ul class="text-sm text-gray-700 mt-4 space-y-2"><li>✓ 50 Tasks / Day</li><li>✓ 40% Referral Bonus</li><li>✓ Instant Withdraw</li><li>✓ 24/7 VIP Support</li></ul>
-<button onclick="openPay('Diamond - Rs 1000')" class="w-full mt-6 py-3 gold-gradient text-black rounded-xl font-black">Get Diamond</button>
+<div class="bg-[#0a0a0a] border border-amber-500/30 rounded-[18px] p-5 gold-neon">
+<h3 class="font-black text-amber-400">💎 Diamond</h3><div class="text-3xl font-black mt-4">Rs 1000</div>
+<ul class="text-sm text-zinc-300 mt-4 space-y-2"><li>✓ 50 Tasks / Day</li><li>✓ 40% Bonus</li><li>✓ Instant Withdraw</li></ul>
+<button onclick="openPay('Diamond - Rs 1000')" class="w-full mt-6 py-3 bg-gradient-to-r from-amber-400 to-yellow-600 text-black rounded-xl font-black">Get Diamond</button>
 </div>
 
 </div>
 </div>
-
 </div>
 </div>
 
-<!-- PAYMENT POPUP - PRO -->
-<div id="payPopup" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[999] p-4">
-<div class="bg-white rounded-[24px] max-w-sm w-full p-7 text-center">
-<div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">💳</div>
+<div id="payPopup" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-[999] p-4">
+<div class="bg-[#151515] border border-[#222] rounded-[24px] max-w-sm w-full p-7 text-center">
 <h2 class="font-black text-xl">Complete Payment</h2>
-<p class="text-sm text-gray-500 mt-1">You selected <b id="selectedPlan" class="text-black"></b></p>
-<div class="mt-5 p-4 bg-red-600 text-white rounded-xl"><p class="text-xs opacity-80">Send via JazzCash</p><h2 class="text-2xl font-black tracking-wider">03289332912</h2><p class="text-xs mt-1">Title: EarnHub Official</p></div>
-<input placeholder="Your JazzCash Number" class="w-full mt-4 p-3 bg-gray-50 rounded-xl border text-sm">
-<input placeholder="Transaction ID (TID)" class="w-full mt-2 p-3 bg-gray-50 rounded-xl border text-sm">
-<button onclick="submitPay()" class="w-full mt-4 bg-gray-900 text-white py-3 rounded-xl font-bold">I Have Paid →</button>
-<button onclick="closePay()" class="w-full mt-2 text-sm text-gray-500 py-2">Cancel</button>
+<p class="text-sm text-zinc-500 mt-1">Selected <b id="selectedPlan" class="text-white"></b></p>
+<div class="mt-5 p-4 bg-red-600 rounded-xl"><p class="text-xs opacity-80">JazzCash</p><h2 class="text-2xl font-black">03289332912</h2></div>
+<input placeholder="Your JazzCash Number" class="w-full mt-4 p-3 bg-black rounded-xl border border-[#222] text-white text-sm">
+<input placeholder="Transaction ID" class="w-full mt-2 p-3 bg-black rounded-xl border border-[#222] text-white text-sm">
+<button onclick="submitPay()" class="w-full mt-4 bg-[#00FF88] text-black py-3 rounded-xl font-black">I Have Paid →</button>
+<button onclick="closePay()" class="w-full mt-2 text-sm text-zinc-500 py-2">Cancel</button>
 </div>
 </div>
 
 <script>
 let user=JSON.parse(localStorage.getItem('eh_user')||'null');
-function login(){
- let n=document.getElementById('nameInput').value||'Amh';
- if(!user){user={name:n,code:'EHT'+Math.random().toString(36).substr(2,6).toUpperCase(),points:0};}
- localStorage.setItem('eh_user',JSON.stringify(user));show();
-}
-function show(){
- if(!user)return;
- document.getElementById('authSection').style.display='none';
- document.getElementById('dashboardSection').style.display='block';
- document.getElementById('topBalance').classList.remove('hidden');
- document.getElementById('points').innerText=user.points;
- document.getElementById('topBalance').innerText=user.points+' PTS';
- document.getElementById('refCode').innerText=user.code;
- document.getElementById('refLink').value='https://mrahmii500-commits.github.io/earnhub/?ref='+user.code;
-}
-function copyCode(){navigator.clipboard.writeText(document.getElementById('refCode').innerText);alert('Code Copied!');}
-function copyLink(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Link Copied!');}
+function login(){let n=document.getElementById('nameInput').value||'Amh';if(!user){user={name:n,code:'EHT'+Math.random().toString(36).substr(2,6).toUpperCase(),points:0};}localStorage.setItem('eh_user',JSON.stringify(user));show();}
+function show(){if(!user)return;document.getElementById('authSection').style.display='none';document.getElementById('dashboardSection').style.display='block';document.getElementById('topBalance').classList.remove('hidden');document.getElementById('points').innerText=user.points;document.getElementById('topBalance').innerText=user.points+' PTS';document.getElementById('refCode').innerText=user.code;document.getElementById('refLink').value='https://mrahmii500-commits.github.io/earnhub/?ref='+user.code;}
+function copyCode(){navigator.clipboard.writeText(document.getElementById('refCode').innerText);alert('Copied!');}
+function copyLink(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Copied!');}
 function earnPoints(){user.points+=10;localStorage.setItem('eh_user',JSON.stringify(user));document.getElementById('points').innerText=user.points;alert('+10 Added!');}
-function openPay(p){document.getElementById('selectedPlan').innerText=p;document.getElementById('payPopup').style.display='flex';document.getElementById('payPopup').classList.add('flex');}
+function openPay(p){document.getElementById('selectedPlan').innerText=p;document.getElementById('payPopup').style.display='flex';}
 function closePay(){document.getElementById('payPopup').style.display='none';}
-function submitPay(){alert('Proof Submitted! Verified in 2 hours. JazzCash: 03289332912');closePay();}
+function submitPay(){alert('Proof Submitted! JazzCash: 03289332912');closePay();}
 if(user)show();
 </script>
 </body>
